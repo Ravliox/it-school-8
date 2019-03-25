@@ -1,5 +1,7 @@
 <template>
   <div id = "form">
+    <h1> Edi </h1>
+    <h2> Muie Dragnea </h2>
   </div>  
 </template>
 
