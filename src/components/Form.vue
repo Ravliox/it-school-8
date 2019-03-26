@@ -1,13 +1,60 @@
 <template>
   <div id = "form">
-    <h1> Edi </h1>
-    <h2> Muie Dragnea </h2>
+    <div class = "form-frame">
+      <div v-for="(input, index) in inputs" :key="index" class = "input-container">
+        <p> {{ input.label }} </p>
+        <input v-bind:class="{'invalid-input' : input.invalid}" v-if="!input.textarea" v-model="input.value" />
+        <textarea v-if="input.textarea"></textarea>
+      </div>
+      <input v-model="checkBoxValue" type = "checkbox" class = "checkbox" >
+      <button @click="submit()"> Submit </button>
+      <p v-if ="checkBoxError"> Verify you're not a robot! </p>
+    </div>
   </div>  
 </template>
 
 <script>
 export default {
-  
+  data() {
+    return {
+      checkBoxValue: false,
+      checkBoxError: false,
+      inputs: [
+        {
+          label: 'Your fist name',
+          value: ''
+        },
+        {
+          label: 'Your latin name',
+          value: ''
+        },
+        {
+          label: 'Your last name',
+          value: ''
+        },
+        {
+          label: 'Your creed',
+          value: ''
+        },
+        {
+          label: 'Deus vult',
+          value: '',
+          textarea: true
+        }
+      ]
+    }
+  },
+  methods: {
+    submit() {
+      this.checkBoxError = false;
+
+      if (!this.checkBoxValue) {
+        this.checkBoxError = true;
+      } else { 
+        console.log(this.inputs);
+      }
+    }
+  }
 }
 </script>
 
